@@ -7,7 +7,7 @@ Ruby client for [NIPAP][1] (Neat IP Address Planner)
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'nipap'
+gem "nipap"
 ```
 
 And then execute:

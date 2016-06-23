@@ -1,5 +1,6 @@
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'nipap'
+$LOAD_PATH.unshift ::File.expand_path("../../lib", __FILE__)
+require "nipap"
+require "pp"
 
-require 'minitest/autorun'
-require 'minitest/pride'
+require "minitest/autorun"
+require "minitest/pride"
