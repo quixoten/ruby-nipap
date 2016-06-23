@@ -1,4 +1,4 @@
-# Ruby::NIPAP
+# NIPAP
 
 Ruby client for [NIPAP][1] (Neat IP Address Planner)
 
