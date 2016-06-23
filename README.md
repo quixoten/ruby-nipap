@@ -39,8 +39,9 @@ Bug reports and pull requests are welcome on [GitHub][3].
 
 ## License
 
-The gem is available as open source under the terms of the {file:LICENSE.html MIT License}.
+The gem is available as open source under the terms of the [MIT License][4].
 
 [1]: http://spritelink.github.io/NIPAP/
 [2]: https://rubygems.org
 [3]: https://github.com/quixoten/ruby-nipap
+[4]: https://opensource.org/licenses/MIT
