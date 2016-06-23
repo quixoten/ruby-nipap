@@ -1,5 +1,38 @@
 module NIPAP
   class VRF
+
+    def self.list(spec = {})
+      req("list_vrf", { vrf: spec }).map do |vrf|
+        self.new(vrf)
+      end
+    end
+
+    def self.get(id)
+      self.list(id: id).first
+    end
+
+    def self.save(vrf)
+      attr = vrf.to_attr
+      spec = { id: vrf.id }
+
+      if vrf.id.nil?
+        reply = req("add_vrf", { attr: attr })
+      else
+        reply = req("edit_vrf", { vrf: spec, attr: attr })[0]
+      end
+
+      self.new(reply)
+    end
+
+    def remove(vrf)
+      req("remove_vrf", { vrf: { id: vrf.id } })
+      true
+    end
+
+    def self.req(*args)
+      NIPAP.client.req(*args)
+    end
+
     attr_accessor :id
     attr_accessor :rt
     attr_accessor :name

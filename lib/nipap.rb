@@ -2,9 +2,16 @@ require "nipap/version"
 require "nipap/client"
 require "nipap/vrf"
 
-# Ruby Client for NIPAP
 module NIPAP
-  def self.connect(uri)
-    Client.new(uri)
+  def self.connect_to(uri)
+    self.client = Client.new(uri)
+  end
+
+  def self.client=(client)
+    @client = client
+  end
+
+  def self.client
+    @client
   end
 end

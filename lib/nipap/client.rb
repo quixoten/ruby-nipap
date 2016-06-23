@@ -10,45 +10,31 @@ module NIPAP
   class Client
     attr_reader :uri
 
-    AUTH = {  authoritative_source: "ruby-nipap" }.freeze
+    AUTH = {  auth: { authoritative_source: "ruby-nipap" }.freeze }.freeze
 
     def initialize(uri)
-      @uri  = uri
-      @conn = ::XMLRPC::Client.new2(self.uri)
+      @uri = uri
+      @rpc = ::XMLRPC::Client.new2(self.uri)
     end
 
-    def list_vrfs(spec = {})
-      @conn.call("list_vrf", { vrf: spec, auth: AUTH }).map do |vrf|
-        VRF.new(symbolize_keys(vrf))
-      end
+    def req(method, params = {})
+      reply = @rpc.call(method, params.merge(AUTH))
+      symbolize_keys(reply)
     end
 
-    def get_vrf(id)
-      list_vrfs(id: id).first
-    end
-
-    def save_vrf(vrf)
-      attr = vrf.to_attr
-      spec = { id: vrf.id }
-
-      if vrf.id.nil?
-        resp = @conn.call("add_vrf", { attr: attr, auth: AUTH })
+    def symbolize_keys(obj)
+      case obj
+      when Hash
+        obj.keys.inject({}) do |symbolized_hash, key|
+          symbolized_hash[key.to_sym] = symbolize_keys(obj[key])
+          symbolized_hash
+        end
+      when Array
+        obj.map do |value|
+          symbolize_keys(value)
+        end
       else
-        resp = @conn.call("edit_vrf", { vrf: spec, attr: attr, auth: AUTH })[0]
-      end
-
-      VRF.new(symbolize_keys(resp))
-    end
-
-    def remove_vrf(vrf)
-      @conn.call("remove_vrf", { vrf: { id: vrf.id }, auth: AUTH })
-      true
-    end
-
-    def symbolize_keys(hash)
-      hash.keys.inject({}) do |symbolized_hash, key|
-        symbolized_hash[key.to_sym] = hash[key]
-        symbolized_hash
+        obj
       end
     end
   end
