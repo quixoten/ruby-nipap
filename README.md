@@ -1,4 +1,4 @@
-# Ruby::Nipap
+# Ruby::NIPAP
 
 Ruby client for [NIPAP][1] (Neat IP Address Planner)
 
@@ -7,7 +7,7 @@ Ruby client for [NIPAP][1] (Neat IP Address Planner)
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'ruby-nipap'
+gem 'nipap'
 ```
 
 And then execute:
@@ -16,7 +16,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install ruby-nipap
+    $ gem install nipap
 
 ## Usage
 

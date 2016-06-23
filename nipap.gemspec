@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'ruby/nipap/version'
+require 'nipap/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "ruby-nipap"
-  spec.version       = Ruby::Nipap::VERSION
+  spec.name          = "nipap"
+  spec.version       = NIPAP::VERSION
   spec.authors       = ["Devin Christensen"]
   spec.email         = ["quixoten@gmail.com"]
 
